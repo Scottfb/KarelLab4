@@ -12,8 +12,29 @@ public class Problem1 extends Robot
     }
     
     public void escapeRoom() {
-        move();
+        checkWall();
+        escapeRoom();
     }
-   
+    public void checkWall() {
+        while(!frontIsClear()) {
+            turnLeft();
+        }
+        while(frontIsClear()) {
+            move();
+            turnRight();
+            if (!frontIsClear()) {
+                turnLeft();
+            }
+            if(frontIsClear()) {
+                move();
+                move();
+            }
+        }
+    }
+    public void turnRight() {
+        turnLeft();
+        turnLeft();
+        turnLeft();
+    }
 }
 
